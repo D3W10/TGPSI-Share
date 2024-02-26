@@ -1,0 +1,1358 @@
+:root {
+    --back: rgba(240, 240, 240, 0.95);
+    --context: rgba(255, 255, 255, 0.15);
+    --touch: rgba(0, 0, 0, 0.065);
+    --tone: rgba(0, 0, 0, 0.1);
+    --tiny: rgba(0, 0, 0, 0.15);
+    --little: rgba(0, 0, 0, 0.2);
+    --text: rgba(0, 0, 0, 1);
+    --depthShadow: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.2)) drop-shadow(0 1px 8px rgba(0, 0, 0, 0.3));
+    --backShadow: 0 10px 30px rgb(0 0 0 / 20%), 0 1px 8px rgb(0 0 0 / 40%);
+    --backShadowIcon: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.4)) drop-shadow(0 1px 8px rgba(0, 0, 0, 0.8));
+    --circleShadow: inset 0 0 4px rgb(0 0 0 / 25%);
+    --airBlue: rgb(0, 122, 255);
+    --shinyRed: rgb(255, 59, 48);
+    --lightRed: rgba(255, 59, 48, 0.25);
+    --stunningYellow: rgb(255, 204, 0);
+    --radiantGreen: rgb(52, 199, 89);
+}
+
+[theme="dark"] {
+    --back: rgba(15, 15, 15, 0.95);
+    --context: rgba(240, 240, 240, 0.1);
+    --touch: rgba(255, 255, 255, 0.065);
+    --tone: rgba(255, 255, 255, 0.1);
+    --tiny: rgba(255, 255, 255, 0.15);
+    --little: rgba(255, 255, 255, 0.2);
+    --text: rgba(255, 255, 255, 1);
+    --depthShadow: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.1)) drop-shadow(0 1px 8px rgba(255, 255, 255, 0.2));
+    --backShadow: 0 10px 30px rgb(255 255 255 / 10%), 0 1px 8px rgb(255 255 255 / 20%);
+    --backShadowIcon: drop-shadow(0 10px 30px rgba(255, 255, 255, 0.2)) drop-shadow(0 1px 8px rgba(255, 255, 255, 0.4));
+    --circleShadow: inset 0 0 4px rgb(0 0 0 / 50%);
+}
+
+/* #region BASICS */
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--touch);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--tiny);
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--little);
+}
+
+::placeholder {
+    color: var(--text);
+    opacity: 0.6;
+}
+
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: tgpsifont;
+    position: static;
+    overflow: hidden;
+    color: var(--text);
+    letter-spacing: 0.3px;
+    user-select: none;
+}
+
+h1 {
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    font-size: 2em;
+}
+
+h2 {
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    width: fit-content;
+    margin: 25px 0 8px 0;
+}
+
+h4 {
+    width: fit-content;
+    font-weight: 400;
+    font-size: 1.25em;
+    margin: 5px auto 20px;
+}
+
+p {
+    width: fit-content;
+    margin: 0 0 15px 0;
+    padding: 0;
+    font-weight: 400;
+}
+
+p.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+img, icon {
+    display: flex;
+    -webkit-user-drag: none;
+}
+
+a {
+    color: var(--airBlue);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+a[lock] {
+    opacity: 0.7;
+    cursor: default;
+}
+
+a[small] {
+    display: block;
+    width: fit-content;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+button {
+    border: 0;
+    display: block;
+    outline: 0;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 10px 30px;
+    font: inherit;
+    font-weight: bold;
+    letter-spacing: inherit;
+    transition: background-color 0.2s, color 0.2s, opacity 0.2s;
+    background-color: var(--tone);
+    color: var(--text);
+}
+
+button:hover {
+    background-color: var(--tiny);
+}
+
+button:active {
+    background-color: var(--little);
+}
+
+button:disabled {
+    cursor: default;
+    background-color: var(--tone);
+    opacity: 0.7;
+}
+
+button:disabled:active {
+    background-color: var(--tone);
+}
+
+button.full {
+    width: 100%;
+}
+
+button.animated {
+    transition: background-color 0.2s, color 0.2s, opacity 1s;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    display: block;
+    border: 0;
+    outline: 0;
+    width: 100%;
+    padding: 5px 8px;
+    font: inherit;
+    letter-spacing: inherit;
+    border-radius: 10px;
+    color: var(--text);
+    background-color: var(--tone);
+    opacity: 1;
+    transition: background-color 0.4s, color 0.2s, opacity 0.2s;
+}
+
+input[type="text"]:disabled, input[type="email"]:disabled, input[type="password"]:disabled {
+    opacity: 0.7;
+    pointer-events: none;
+    user-select: none;
+}
+
+input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    position: relative;
+    background-color: var(--tone);
+    appearance: none;
+    transition: background-color 0.4s;
+}
+
+input[type="checkbox"]:hover {
+    background-color: var(--tiny);
+}
+
+input[type="checkbox"]:checked {
+    background-color: var(--airBlue);
+}
+
+input[type="checkbox"]:checked::after {
+    content: "\2714";
+    width: 13px;
+    height: 13px;
+    color: var(--text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 10px;
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding-left: 7px;
+    margin-bottom: 3.5em;
+}
+
+li {
+    margin-bottom: 5px;
+}
+
+label {
+    font-weight: 300;
+}
+
+select {
+    color: var(--text);
+    background-color: var(--tone);
+    border: 0;
+    outline: 0;
+    padding: 5px 8px;
+    font: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.4s, color 0.2s;
+}
+
+select:hover {
+    background-color: var(--tiny);
+}
+
+option {
+    color: black;
+}
+
+#app {
+    width: 100vw;
+    background-color: var(--back);
+    border-radius: 10px;
+}
+
+/* #endregion BASICS */
+
+/* #region APP FRAME */
+
+#frameBar {
+    height: 25px;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    background-color: var(--touch);
+    border-radius: 10px 10px 0 0;
+    -webkit-app-region: drag;
+}
+
+#frameBar > div {
+    display: flex;
+    align-items: center;
+}
+
+#frameBar > div > img {
+    height: 17px;
+}
+
+#frameBar > div > span {
+    opacity: 0.8;
+}
+
+#frameBar > div > div {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    margin-right: 6px;
+    transition: box-shadow 0.2s;
+    -webkit-app-region: no-drag;
+}
+
+#frameBar > div > div:hover {
+    box-shadow: var(--circleShadow);
+}
+
+#frameBar > div > div:last-child {
+    margin-right: 0;
+}
+
+#closeCircle {
+    background-color: var(--shinyRed);
+}
+
+#minimizeCircle {
+    background-color: var(--stunningYellow);
+}
+
+/* #endregion APP FRAME */
+
+/* #region APP CONTENT */
+
+#appContent {
+    position: relative;
+    transition: height 0.4s;
+}
+
+#appContent > div {
+    padding: 10px;
+    transition: opacity 0.4s;
+}
+
+#appContent > div > img.main {
+    width: 110px;
+    margin: 5px auto 0 auto;
+    filter: var(--depthShadow);
+}
+
+#appContent > div > div.imageTitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#appContent > div > div.imageTitle img, #appContent > div > div.imageTitle icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 100vw;
+    fill: var(--text);
+}
+
+.progressBar {
+    height: 5px;
+    background-color: var(--airBlue);
+    border-radius: 100vh;
+    transition: width 0.2s;
+}
+
+.progressBar.indeterminate:before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background: var(--airBlue);
+    animation: progressFirstLine 2100ms cubic-bezier(0.65, 0.81, 0.73, 0.4) infinite;
+}
+
+.progressBar.indeterminate:after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    background: var(--airBlue);
+    animation: progressLastLine 2100ms cubic-bezier(0.16, 0.84, 0.44, 1) 1150ms infinite;
+}
+
+.sideFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 39px;
+    margin-top: 10px;
+}
+
+.sideFooter > a {
+    display: flex;
+    align-items: center;
+    transition: opacity 0.2s;
+    text-shadow: var(--backShadow);
+}
+
+.sideFooter > a > icon {
+    width: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    filter: var(--backShadowIcon);
+    fill: var(--airBlue);
+}
+
+.sideFooter > div {
+    display: flex;
+    align-items: center;
+}
+
+.sideFooter > img, .sideFooter > div > img {
+    height: 30px;
+}
+
+.sideFooter > div > button {
+    margin-left: 10px;
+}
+
+/* #endregion APP CONTENT */
+
+/* #region HOME PANEL */
+
+#homePanel {
+    align-items: center;
+    flex-direction: column;
+    opacity: 1;
+}
+
+#homePanel > p {
+    margin-bottom: 25px;
+}
+
+#homePanel > button {
+    margin-top: 10px;
+}
+
+#profileSpace {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+}
+
+#profileSpace > div {
+    width: inherit;
+    height: inherit;
+    border-radius: 100vw;
+    overflow: hidden;
+    fill: var(--airBlue);
+}
+
+#profileSpace > div > img, #profileSpace > div > icon {
+    width: inherit;
+    height: inherit;
+}
+
+#profileSpace > img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 15px;
+    background-color: var(--back);
+    border-radius: 100vw;
+}
+
+#contextMenu {
+    position: absolute;
+    right: 15px;
+    top: 55px;
+    flex-direction: column;
+    border-radius: 10px;
+    padding: 5px;
+    font-weight: bold;
+    background-color: var(--context);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+    transition: width 0.4s, height 0.4s, padding 0.4s;
+}
+
+#contextMenu > a {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--text);
+    opacity: 0;
+    cursor: pointer;
+    transition: opacity 0.4s, background-color 0.2s;
+}
+
+#contextMenu > a:hover {
+    background-color: var(--tone);
+}
+
+#contextMenu > a > icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 7px;
+    fill: var(--text);
+}
+
+#contextMenu > hr {
+    width: 100%;
+    margin: 5px 0;
+    opacity: 0;
+    transition: opacity 0.4s;
+    border-radius: 100vw;
+    border-color: var(--tiny);
+}
+
+/* #endregion HOME PANEL */
+
+/* #region SEND PANEL */
+
+#filesInputBox {
+    border-style: solid;
+    border-color: var(--tiny);
+    border-width: 5px;
+    height: 130px;
+    background-color: unset;
+    padding: 0;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: border-color 0.15s;
+    position: relative;
+}
+
+#filesDiv {
+    padding: 5px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    transition: opacity 0.4s;
+}
+
+#filesDiv[lock] > .fileDiv {
+    opacity: 0.7;
+    cursor: default;
+}
+
+#filesDiv[lock] > .fileDiv:hover {
+    background-color: unset;
+}
+
+#filesText {
+    max-width: 90%;
+    text-align: center;
+}
+
+#textChoose {
+    font-size: 17px;
+    font-weight: 500;
+}
+
+#textDrop {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.fileDiv {
+    display: flex;
+    justify-content: space-between;
+    max-height: 29px;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background-color 0.2s, max-height 0.2s, opacity 0.2s, padding 0.2s;
+    cursor: pointer;
+}
+
+.fileDiv:hover {
+    background-color: var(--tone);
+}
+
+.fileDiv > .name {
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.fileDiv > .size {
+    font-weight: normal;
+    right: 0;
+    min-width: fit-content;
+    margin-left: 8px;
+    transition: opacity 0.2s;
+}
+
+.fileDiv > .size > icon {
+    display: inline-flex;
+    width: 19px;
+    height: 19px;
+    cursor: pointer;
+    fill: var(--shinyRed);
+}
+
+#addFiles {
+    display: none;
+    height: 35px;
+    padding: 5px;
+    margin-top: 10px;
+    align-items: center;
+    background-color: var(--touch);
+    border-radius: 5px;
+    fill: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#addFiles:hover {
+    background-color: var(--tone);
+}
+
+#addFiles[lock] {
+    opacity: 0.7;
+    cursor: default;
+}
+
+#addFiles[lock]:hover {
+    background-color: var(--touch);
+}
+
+#addFiles > icon {
+    height: 20px;
+    margin: 0 10px 0 2.5px;
+}
+
+#sendProgress {
+    margin: 0 5px 0 5px;
+}
+
+#filesDragAndDrop {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    cursor: pointer;
+}
+
+#filesDragAndDrop[lock] {
+    cursor: default;
+}
+
+#sendDetails div {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+#sendDetails div:last-child {
+    margin-bottom: 20px;
+}
+
+#sendDetails .label {
+    font-weight: 500;
+    margin: 0;
+}
+
+#sendSize {
+    margin: 0;
+}
+
+#sendMessage {
+    margin-left: 8px;
+}
+
+/* #endregion SEND PANEL */
+
+/* #region RECEIVE PANEL */
+
+#receiveDetails {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+#receiveDetails > .label {
+    font-weight: 500;
+    margin: 0;
+}
+
+#receiveDetails > .value {
+    position: relative;
+    width: 100%;
+    margin-left: 15px;
+    overflow: hidden;
+}
+
+#receiveMessage {
+    margin: 0;
+    max-height: 19px;
+    width: max-content;
+    position: absolute;
+}
+
+#receiveMessage > * {
+    font-size: 1em;
+    margin: 0;
+}
+
+/* #endregion RECEIVE PANEL */
+
+/* #region DONE PANEL */
+
+#outputCode {
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    margin: 30px auto 15px auto;
+    transition: opacity 0.4s;
+}
+
+#doneCopy {
+    width: 40%;
+    height: 35px;
+    margin: 0 auto 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    fill: var(--airBlue);
+}
+
+#doneCopy > icon {
+    height: inherit;
+    cursor: pointer;
+}
+
+/* #endregion DONE PANEL */
+
+/* #region ACCOUNT PANEL */
+
+#accountPanel > button {
+    width: 100%;
+}
+
+#accountButtons {
+    margin-top: 30px;
+}
+
+#accountButtons > a {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+    color: var(--text);
+    background-color: var(--touch);
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#accountButtons > a:hover {
+    background-color: var(--tone);
+}
+
+#accountButtons > a:active {
+    background-color: var(--tiny);
+}
+
+#accountButtons > a[lock] {
+    opacity: 0.5;
+    cursor: unset;
+}
+
+#accountButtons > a[lock]:hover, #accountButtons > a[lock]:active {
+    background-color: var(--touch);
+}
+
+#accountButtons > a > icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    fill: var(--text);
+}
+
+/* #endregion ACCOUNT PANEL */
+
+/* #region LOGIN PANEL */
+
+#loginPanel > input {
+    margin-top: 12px;
+}
+
+/* #endregion LOGIN PANEL */
+
+/* #region SIGNUP PANEL */
+
+#signupPanel > input {
+    margin: 10px 0;
+}
+
+#signupPic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: opacity 0.2s;
+}
+
+#signupPic[lock] {
+    opacity: 0.7;
+    cursor: default;
+}
+
+#signupPic > a {
+    cursor: default;
+}
+
+#signupPic > icon, #signupPic > img {
+    width: 30px;
+    height: 30px;
+    fill: var(--airBlue);
+    border-radius: 100%;
+}
+
+/* #endregion SIGNUP PANEL */
+
+/* #region WELCOME PANEL */
+
+#welcomePanel > div:first-child {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+#welcomePanel > div:first-child > div {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    transition: opacity 0.4s;
+}
+
+#welcomePanel > div:first-child > div icon {
+    width: 100px;
+    height: 100px;
+    margin: 30px 0 10px;
+    fill: var(--airBlue);
+}
+
+#welcomePanel > div:first-child > div > p {
+    margin: 10px 5px 0;
+    text-align: center;
+}
+
+#welcomeSlide3 > div {
+    position: relative;
+}
+
+#welcomeSlide3 > div > img {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 42.8px;
+    background-color: var(--back);
+    border-radius: 100vw;
+}
+
+#welcomeSlide3 > div > div {
+    width: 100px;
+    height: 100px;
+    margin: 30px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100vw;
+    overflow: hidden;
+}
+
+#welcomeSlide3 > div > div > img {
+    width: inherit;
+    height: inherit;
+}
+
+#welcomeSlide3 > div > div > icon {
+    margin: 0 !important;
+}
+
+/* #endregion WELCOME PANEL */
+
+/* #region HELLO PANEL */
+
+#helloPanel > div > icon, #helloPanel > div > img {
+    width: 150px;
+    height: 150px;
+    margin: 27.5px 55px 0;
+    border-radius: 100vw;
+    opacity: 0;
+    fill: var(--airBlue);
+    transform: scale(1.5);
+    transition: transform 1s, opacity 0.4s;
+}
+
+#helloPanel > h1, #helloPanel > h4 {
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+
+#helloPanel > button {
+    opacity: 0;
+}
+
+/* #endregion HELLO PANEL */
+
+/* #region HISTORY PANEL */
+
+#historyEntries {
+    height: 131px;
+    overflow-y: scroll;
+    transition: opacity 0.4s;
+}
+
+#historyEntries > div {
+    cursor: pointer;
+}
+
+#historyEntries[lock] > div {
+    cursor: default;
+    opacity: 0.7;
+}
+
+#historyEntries[lock] > div:hover {
+    background-color: unset;
+}
+
+.historyEntry {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 29px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    transition: background-color 0.2s, max-height 0.2s, opacity 0.2s, padding 0.2s, margin 0.2s;
+}
+
+.historyEntry:hover {
+    background-color: var(--tone);
+}
+
+.historyEntry:last-child {
+    margin: 0;
+}
+
+.historyEntry > p {
+    font-weight: bold;
+    margin: 0;
+    transition: opacity 0.2s;
+}
+
+.historyEntry > span {
+    max-height: 19px;
+    transition: opacity 0.2s;
+}
+
+.historyEntry > span > icon {
+    display: inline-flex;
+    height: 19px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.historyEntry > span > icon:last-child {
+    margin-right: 0;
+}
+
+.historyEntry > span > icon[name="copy"] {
+    fill: var(--airBlue);
+}
+
+.historyEntry > span > icon[name="download"] {
+    fill: var(--radiantGreen);
+}
+
+.historyEntry > span > icon[name="remove"] {
+    fill: var(--shinyRed);
+}
+
+#historyEmpty {
+    font-weight: bold;
+    text-align: center;
+    opacity: 1;
+    transition: opacity 0.8s;
+}
+
+/* #endregion HISTORY PANEL */
+
+/* #region SETTINGS PANEL */
+
+#settingsContent {
+    height: 220px;
+    margin-top: 20px;
+    padding-right: 5px;
+    overflow-y: scroll;
+}
+
+#settingsContent > h3:first-child {
+    margin-top: 0;
+}
+
+#settingsContent > span {
+    margin-top: 20px;
+}
+
+#settingsContent > button, #settingsContent > input {
+    margin: 10px 0;
+}
+
+#settingsPanel > div > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* #endregion SETTINGS PANEL */
+
+/* #region ABOUT PANEL */
+
+#aboutLogo {
+    display: flex;
+    align-items: center;
+}
+
+#aboutLogo > img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+#copyright {
+    font-size: 10px;
+    opacity: 0.7;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* #endregion ABOUT PANEL */
+
+/* #region OFFLINE PANEL */
+
+#offlinePanel > p {
+    margin: 0;
+}
+
+/* #endregion OFFLINE PANEL */
+
+/* #region ALERT */
+
+#alertContent {
+    padding: 10px;
+}
+
+#alertContent > div:first-child {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+#alertContent > div:first-child > img {
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+#alertContent > div:first-child > p {
+    margin: 0 0 0 10px;
+}
+
+#alertContent > div:last-child > div {
+    display: none;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#alertContent > div:last-child > div > button {
+    margin-left: 10px;
+}
+
+#alertContent > div:last-child > div > button:first-child {
+    margin-left: 0;
+}
+
+/* #endregion ALERT */
+
+/* #region UPDATER */
+
+#updaterContent {
+    padding: 12.5px;
+}
+
+#updaterContent > div:first-child {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+#updaterContent > div:first-child > img {
+    width: 50px;
+    height: 50px;
+}
+
+#updaterContent > div:first-child > div {
+    width: 100%;
+    margin-left: 10px;
+}
+
+#packageName {
+    font-size: 1.4em;
+}
+
+#updateInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 48px;
+    margin-top: 5px;
+    opacity: 1;
+    transition: opacity 0.4s;
+}
+
+#updateDescription {
+    height: inherit;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#updateProgress {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    overflow: hidden;
+    border-radius: 100vh;
+}
+
+#updaterContent > .changes {
+    margin: 15px 0 10px;
+    padding: 15px;
+    background-color: var(--tone);
+    height: 200px;
+    border-radius: 10px;
+    overflow-y: scroll;
+}
+
+#updaterContent > .changes > :last-child {
+    margin-bottom: 0;
+}
+
+#updaterContent > .changes > h1, #updaterContent > .changes > h2, #updaterContent > .changes > h3 {
+    font-size: 1.4em;
+    margin: 25px 0 0 0;
+}
+
+#updaterContent > .changes > h1:first-child, #updaterContent > .changes > h2:first-child, #updaterContent > .changes > h3:first-child {
+    margin: 0;
+}
+
+#updaterContent > .changes > p {
+    font-size: 15px;
+    margin: 10px 0 0 0;
+}
+
+#updaterContent > .changes > ul {
+    padding-left: 5px;
+    margin: 10px 0 20px 0;
+}
+
+#updaterContent > .changes > ul > li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+#updaterContent > .changes > ul > li:before {
+    content: "•";
+    font-weight: 900;
+    margin-right: 10px;
+}
+
+#updaterContent > .changes > ul > li:last-child {
+    margin: 0 !important;
+}
+
+#updaterContent > div:last-child {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* #endregion UPDATER */
+
+/* #region KEYFRAMES */
+
+@keyframes progressFirstLine {
+    0% {
+        left: -35%;
+        right: 100%;
+    }
+
+    60%, 100% {
+        left: 100%;
+        right: -90%;
+    }
+}
+
+@keyframes progressLastLine {
+    0% {
+        left: -200%;
+        right: 100%;
+    }
+
+    60%, 100% {
+        left: 107%;
+        right: -8%;
+    }
+}
+
+@keyframes hueRotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* #endregion KEYFRAMES */
+
+/* #region FONT */
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Ultralight.otf);
+    font-weight: 100;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-UltralightItalic.otf);
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Thin.otf);
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-ThinItalic.otf);
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Light.otf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-LightItalic.otf);
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Regular.otf);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-RegularItalic.otf);
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Medium.otf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-MediumItalic.otf);
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Semibold.otf);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-SemiboldItalic.otf);
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Bold.otf);
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-BoldItalic.otf);
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Heavy.otf);
+    font-weight: 800;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-HeavyItalic.otf);
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-Black.otf);
+    font-weight: 900;
+}
+
+@font-face {
+    font-family: tgpsifont;
+    src: url(fonts/TGPSIFont-BlackItalic.otf);
+    font-weight: 900;
+    font-style: italic;
+}
+
+/* #endregion FONT */

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="../style.css">
+        <link rel="icon" href="./update.png">
+        <title>TGPSI Update</title>
+    </head>
+    <body>
+        <div id="app">
+            <div id="frameBar">
+                <div>
+                    <img src="../tgpsi.png">
+                    <span>&nbsp;Update</span>
+                </div>
+                <div>
+                    <div id="minimizeCircle"></div>
+                    <div id="closeCircle"></div>
+                </div>
+            </div>
+            <div id="updaterContent">
+                <div>
+                    <img id="icon" src="../load.gif">
+                    <div>
+                        <h2 id="packageName">A Procurar...</h2>
+                        <div id="updateInfo">
+                            <p id="updateDescription">O TGPSI Share está agora a procurar por atualizações...</p>
+                            <div id="updateProgress">
+                                <div id="updateProgressBar" class="progressBar" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="changes" style="display: none;">null</div>
+                <div>
+                    <button id="appUpdate" disabled>Atualizar</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

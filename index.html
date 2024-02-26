@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="./assets/style.css">
+        <link rel="icon" href="./assets/logo.png">
+        <title>TGPSI Share</title>
+    </head>
+    <body>
+        <div id="app">
+            <div id="frameBar">
+                <div>
+                    <img src="./assets/tgpsi.png">
+                    <span>&nbsp;Share</span>
+                </div>
+                <div>
+                    <div id="minimizeCircle"></div>
+                    <div id="closeCircle"></div>
+                </div>
+            </div>
+            <div id="appContent">
+                <div id="homePanel">
+                    <div id="profileSpace">
+                        <div>
+                            <icon id="profileIcon" name="account"></icon>
+                        </div>
+                    </div>
+                    <div id="contextMenu">
+                        <a goto="accountPanel"><icon name="account"></icon>Conta</a>
+                        <hr>
+                        <a goto="settingsPanel"><icon name="settings"></icon>Definições</a>
+                        <a goto="aboutPanel"><icon name="about"></icon>Sobre</a>
+                    </div>
+                    <img class="main" src="./assets/logo.png">
+                    <h1>TGPSI Share</h1>
+                    <p class="center">Partilha os seus ficheiros!</p>
+                    <button class="full" goto="sendPanel">Enviar</button>
+                    <button class="full" goto="receivePanel">Receber</button>
+                </div>
+                <div id="sendPanel">
+                    <h2>Enviar</h2>
+                    <p>Selecione os ficheiros a enviar:</p>
+                    <div id="filesInputBox">
+                        <div id="filesDiv" style="display: flex; justify-content: center; align-items: center;">
+                            <div id="filesText">
+                                <span id="textChoose">Escolher ficheiros</span>
+                                <br>
+                                <span id="textDrop">Ou arraste para aqui!</span>
+                            </div>
+                            <div id="addFiles">
+                                <icon name="add"></icon>
+                                <span>Adicionar ficheiros</span>
+                            </div>
+                        </div>
+                        <div id="sendProgress">
+                            <div id="sendProgressBar" class="progressBar" style="width: 0%;"></div>
+                        </div>
+                        <div id="filesDragAndDrop"></div>
+                    </div>
+                    <div id="sendDetails">
+                        <div>
+                            <p class="label">Tamanho Total:</p>
+                            <p id="sendSize" style="visibility: hidden;">null</p>
+                        </div>
+                        <div>
+                            <p class="label">Mensagem:</p>
+                            <input id="sendMessage" type="text" placeholder="Opcional" spellcheck="false" autocomplete="off" maxlength="150" disabled>
+                        </div>
+                    </div>
+                    <div class="sideFooter">
+                        <a goto="homePanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                        <div>
+                            <button id="filesSend" disabled>Enviar</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="receivePanel">
+                    <h2>Receber</h2>
+                    <p>Insira o código de envio:</p>
+                    <input id="fileCode" type="text" placeholder="Código de Envio" spellcheck="false" autocomplete="off">
+                    <div id="receiveDetails" style="visibility: hidden;">
+                        <p class="label">Mensagem:</p>
+                        <div class="value">
+                            <p id="receiveMessage">null</p>
+                        </div>
+                        <style id="receiveMessageStyle"></style>
+                    </div>
+                    <div class="sideFooter">
+                        <a goto="homePanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                        <div>
+                            <button id="filesReceive" disabled>Receber</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="donePanel">
+                    <h2>Feito</h2>
+                    <p>O ficheiro vai estar disponível durante 7 dias!</p>
+                    <p id="outputCode">null</p>
+                    <div id="doneCopy">
+                        <icon id="doneCode" name="copy"></icon>
+                        <icon id="doneLink" name="link"></icon>
+                    </div>
+                    <a id="enterDone" goto="donePanel"></a>
+                    <div class="sideFooter">
+                        <a goto="homePanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+                <div id="accountPanel">
+                    <div class="imageTitle">
+                        <div>
+                            <icon name="account"></icon>
+                        </div>
+                        <h2 id="accountUsername">Conta</h2>
+                    </div>
+                    <button id="loginoutButton">Iniciar Sessão</button>
+                    <div id="accountButtons">
+                        <a goto="historyPanel" lock>
+                            <icon name="history"></icon>
+                            <span>Histórico de Envios</span>
+                        </a>
+                        <a goto="settingsPanel" lock>
+                            <icon name="settings"></icon>
+                            <span>Definições de Conta</span>
+                        </a>
+                    </div>
+                    <div class="sideFooter">
+                        <a goto="homePanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+                <div id="loginPanel">
+                    <h2>Iniciar Sessão</h2>
+                    <p>Para começar a sincronizar, inicie sessão com a sua conta TGPSI ID!</p>
+                    <input id="loginUsername" type="text" placeholder="Nome de Utilizador" maxlength="10">
+                    <input id="loginPassword" type="password" placeholder="Password" maxlength="30">
+                    <a id="loginToSignup" goto="signupPanel" small>Criar TGPSI ID</a>
+                    <a id="enterLogin" goto="loginPanel"></a>
+                    <div class="sideFooter">
+                        <a goto="accountPanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                        <div>
+                            <button id="accountLogin" disabled>Entrar</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="signupPanel">
+                    <h2>Criar TGPSI ID</h2>
+                    <p>Crie o seu TGPSI ID e sincronize os seus envios!</p>
+                    <input id="signupUsername" type="text" placeholder="Nome de Utilizador" maxlength="10">
+                    <input id="signupEmail" type="email" placeholder="Email" maxlength="128">
+                    <input id="signupPassword" type="password" placeholder="Palavra-Passe" maxlength="30">
+                    <input id="signupPasswordRepeat" type="password" placeholder="Repetir Palavra-Passe" maxlength="30">
+                    <div id="signupPic">
+                        <a small id="signupProfilePic">Escolher Foto de Perfil</a>
+                        <icon name="account"></icon>
+                    </div>
+                    <div class="sideFooter">
+                        <a goto="loginPanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                        <div>
+                            <button id="accountSignup" disabled>Criar conta</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="welcomePanel">
+                    <div id="welcomeSlide" current="welcomeSlide1">
+                        <div id="welcomeSlide1" style="display: flex; opacity: 1;">
+                            <icon name="hello"></icon>
+                            <h1>Bem-vindo</h1>
+                            <p>A seu TGPSI ID foi criado com sucesso! Vejamos agora tudo o que o TGPSI Share tem para oferecer.</p>
+                        </div>
+                        <div id="welcomeSlide2" style="display: none; opacity: 0;">
+                            <icon name="account"></icon>
+                            <h1>Sincronização</h1>
+                            <p>O histórico de todos os seus envios é sincronizado para a cloud para que possa aceder aos seus ficheiros em qualquer lugar!</p>
+                        </div>
+                        <div id="welcomeSlide3" style="display: none; opacity: 0;">
+                            <div>
+                                <div>
+                                    <icon name="account"></icon>
+                                </div>
+                                <img src="./assets/load.gif" notask>
+                            </div>
+                            <h1>Sincronização</h1>
+                            <p>Sempre que vir este icone na página inicial, é porque a sincronição está a ser executada.</p>
+                        </div>
+                        <div id="welcomeSlide4" style="display: none; opacity: 0;">
+                            <icon name="privacy"></icon>
+                            <h1>Privacidade</h1>
+                            <p>A sua palavra-passe e transferências estão encriptadas tornando impossível que alguém as descodifique.</p>
+                        </div>
+                    </div>
+                    <div class="sideFooter">
+                        <a id="enterWelcome" goto="welcomePanel"></a>
+                        <div>
+                            <button id="welcomeNext">Próximo</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="helloPanel">
+                    <div>
+                        <icon name="account"></icon>
+                    </div>
+                    <h1>Bem-vindo</h1>
+                    <h4>null</h4>
+                    <button class="full animated" goto="homePanel">Continuar</button>
+                    <a id="enterHello" goto="helloPanel"></a>
+                </div>
+                <div id="historyPanel">
+                    <h2>Histórico</h2>
+                    <p>Aqui estão todos os ficheiros que enviou nos últimos 7 dias:</p>
+                    <div id="historyEntries"></div>
+                    <div class="sideFooter">
+                        <a goto="accountPanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+                <div id="settingsPanel">
+                    <div class="imageTitle">
+                        <icon name="settings"></icon>
+                        <h2>Definições</h2>
+                    </div>
+                    <div id="settingsContent">
+                        <h3>Conta</h3>
+                        <span>Mudar Palavra-Passe</span>
+                        <input id="settingsPassword" type="password" placeholder="Nova Palavra-Passe" maxlength="30">
+                        <button id="settingsPasswordChange" class="full">Mudar Palavra-Passe</button>
+                        <span>Ações perigosas</span>
+                        <button id="settingsDeleteAccount" class="full">Apagar Conta</button>
+                        <h3>Aparência</h3>
+                        <div>
+                            <span>Esquema de cores:</span>
+                            <select id="settingsScheme" name="scheme">
+                                <option value="system">Sistema</option>
+                                <option value="light">Claro</option>
+                                <option value="dark">Escuro</option>
+                            </select>
+                        </div>
+                        <h3>Histórico</h3>
+                        <div>
+                            <button id="settingsHistoryClear" class="full">Limpar Histórico</button>
+                        </div>
+                        <h3>Atualizações</h3>
+                        <div>
+                            <span>Permitir atualizações beta:</span>
+                            <input id="settingsBeta" name="beta" type="checkbox">
+                        </div>
+                    </div>
+                    <div class="sideFooter">
+                        <a goto="homePanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+                <div id="aboutPanel">
+                    <div id="aboutLogo">
+                        <img src="./assets/logo.png">
+                        <h2>TGPSI Share</h2>
+                    </div>
+                    <ul>
+                        <li><b>Versão:</b> null</li>
+                        <li><b>Desenvolvido por:</b> null</li>
+                        <li><b>Electron:</b> null</li>
+                        <li><b>Node:</b> null</li>
+                    </ul>
+                    <p id="copyright" title="Ver certificado">Este produto está protegido contra copyright e todo o código, imagens e texto são da autoria do desenvolvedor. TGPSI Share é uma marca registada pertencente a null.</p>
+                    <div class="sideFooter">
+                        <a goto="homePanel">
+                            <icon name="back"></icon>
+                            Voltar
+                        </a>
+                        <div>
+                            <button id="checkForUpdates">Procurar</button>
+                        </div>
+                    </div>
+                </div>
+                <div id="offlinePanel">
+                    <div class="imageTitle">
+                        <icon name="wifi"></icon>
+                        <h2>Offline</h2>
+                    </div>
+                    <p>Parece que não tens nenhuma ligação à internet, liga-te a uma para continuar.</p>
+                    <a id="enterOffline" goto="offlinePanel"></a>
+                    <a id="exitOffline" goto="homePanel"></a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
